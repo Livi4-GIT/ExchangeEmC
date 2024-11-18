@@ -37,6 +37,7 @@ Para compilar e executar o projeto, siga os passos abaixo:
     7. Atualizar cotacoes
 
 ## Participantes do grupo
-Nome: Ana Clara Cincinato Paz | Matrícula: 22124095-5
-Nome: Livia Lirio Severi | Matrícula: 22124024-5
-Nome: Ravi Macedo Ticianelli Lima | Matrícula: 22124069-0
+
+1. Nome: Ana Clara Cincinato Paz | Matrícula: 22124095-5
+2. Nome: Livia Lirio Severi | Matrícula: 22124024-5
+3. Nome: Ravi Macedo Ticianelli Lima | Matrícula: 22124069-0
