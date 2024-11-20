@@ -14,7 +14,7 @@ Para compilar e executar o projeto, siga os passos abaixo:
     ```bash
    gcc -o ExchangeEmC adm.c
 3. Execute o programa usando o seguinte comando:
-  ./C_Learning_Challenge
+  ./ExchangeEmC
 
 ## Forma de uso do programa
 

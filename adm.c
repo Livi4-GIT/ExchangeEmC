@@ -63,7 +63,7 @@ void menu_adm(){
     printf("--------------------------\n");
 };
 
-void contar_criptomoedas(int *qtde_linhas){ //contar qtde de criptomoedas
+void contar_criptomoedas_adm(int *qtde_linhas){ //contar qtde de criptomoedas
     FILE *fp = fopen("criptomoedas.txt", "r");
     if(fp == NULL){
         printf("erro na abertura do arquivo para leitura (criptomoedas.txt).\n");
@@ -154,7 +154,7 @@ int novo_investidor(){//FUNCAO PARA INCLUIR NOVO INVESTIDOR
     fprintf(arquivo_investidor,"%s\n", NOME);
     int quantidade_criptomoedas;
     float nova_linha = 0.0;
-    contar_criptomoedas(&quantidade_criptomoedas);    
+    contar_criptomoedas_adm(&quantidade_criptomoedas);    
     for(int i = 0; i < quantidade_criptomoedas+1; i++) //criptomoedas + R$
         fprintf(arquivo_investidor, "%f\n", nova_linha);
     fclose(arquivo_investidor);
@@ -230,7 +230,7 @@ void Cadastro_Cript(){
     fclose(fp2);
 }
 
-void ler_dados_criptomoedas(char sigla[][4], char nome[][20], float *cotacao, float *taxavenda, float *taxacompra, int quantidade_criptomoedas){
+void ler_dados_criptomoedas_adm(char sigla[][4], char nome[][20], float *cotacao, float *taxavenda, float *taxacompra, int quantidade_criptomoedas){
     FILE *fp = fopen("criptomoedas.txt", "r");
 
     if (fp == NULL){
@@ -262,14 +262,14 @@ void excluir_criptomoeda(){
     //a funcao de saldo conta quatnas criptomoedas tem entao nao precisa mudar isso. so usar o ler dados de criptmoedas e reescrever igual no excluir investidores.
     //printar dados da criptomoeda, confirmar exclusao, apagar a linha respectiva da criptomoeda em cada user.txt
     int quantidade_criptomoedas;
-    contar_criptomoedas(&quantidade_criptomoedas);
+    contar_criptomoedas_adm(&quantidade_criptomoedas);
     int total_moedas = quantidade_criptomoedas + 1;
     char (*sigla_cripto)[4] = malloc(quantidade_criptomoedas * sizeof(*sigla_cripto));
     char (*nome_cripto)[20] = malloc(quantidade_criptomoedas * sizeof(*nome_cripto));
     float *cotacao = malloc(quantidade_criptomoedas * sizeof(*cotacao));
     float *taxavenda = malloc(quantidade_criptomoedas * sizeof(*taxavenda));
     float *taxacompra = malloc(quantidade_criptomoedas * sizeof(*taxacompra));
-    ler_dados_criptomoedas(sigla_cripto, nome_cripto, cotacao, taxavenda, taxacompra, quantidade_criptomoedas);
+    ler_dados_criptomoedas_adm(sigla_cripto, nome_cripto, cotacao, taxavenda, taxacompra, quantidade_criptomoedas);
 
     char nome_criptomoeda_exclusao[200];
     int contador = -1;
@@ -407,7 +407,7 @@ void consultar_saldo_adm(int linha_usuario){
     int senha;
     char nome_investidor[200];
     int quantidade_criptomoedas = 0;
-    contar_criptomoedas(&quantidade_criptomoedas); // contar qtde criptomoedas
+    contar_criptomoedas_adm(&quantidade_criptomoedas); // contar qtde criptomoedas
     
     float *moedas = malloc(quantidade_criptomoedas * sizeof(*moedas));
     fscanf(fp, "%lld", &cpf);   // cpf (descartavel, usando apenas pra pular pra próxima linha)
@@ -422,7 +422,7 @@ void consultar_saldo_adm(int linha_usuario){
     float *cotacao = malloc(quantidade_criptomoedas * sizeof(*cotacao));
     float *taxavenda = malloc(quantidade_criptomoedas * sizeof(*taxavenda));
     float *taxacompra = malloc(quantidade_criptomoedas * sizeof(*taxacompra));
-    ler_dados_criptomoedas(sigla_cripto, nome_cripto, cotacao, taxavenda, taxacompra, quantidade_criptomoedas);
+    ler_dados_criptomoedas_adm(sigla_cripto, nome_cripto, cotacao, taxavenda, taxacompra, quantidade_criptomoedas);
 
     printf("Saldo atual: R$ %.2f\n", moedas[0]);
     for (int j = 0; j < quantidade_criptomoedas; j++)
@@ -681,7 +681,7 @@ int main(void) {
         case 7:
             printf("\n7. Atualizar cotacoes:\n");
             int quantidade_criptomoedas;
-            contar_criptomoedas(&quantidade_criptomoedas);
+            contar_criptomoedas_adm(&quantidade_criptomoedas);
             apagar_dados_arquivo("cotacao_criptomoedas.txt");
 
             char (*sigla_cripto)[4] = malloc(quantidade_criptomoedas * sizeof(*sigla_cripto));
@@ -690,7 +690,7 @@ int main(void) {
             float *taxavenda = malloc(quantidade_criptomoedas * sizeof(*taxavenda));
             float *taxacompra = malloc(quantidade_criptomoedas * sizeof(*taxacompra));
 
-            ler_dados_criptomoedas(sigla_cripto, nome_cripto, cotacao, taxavenda, taxacompra, quantidade_criptomoedas);
+            ler_dados_criptomoedas_adm(sigla_cripto, nome_cripto, cotacao, taxavenda, taxacompra, quantidade_criptomoedas);
 
             for (int i = 0; i < quantidade_criptomoedas; i++)
                 atualizar_criptomoedas_adm(cotacao[i]);
